@@ -11,8 +11,10 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    trategy:
+      matrix:
+        php_version: ["7.2", "7.4", "8.0", "8.1"]
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag dock4/php:$(date +%s)
+      run: docker build . --file ./php/Dockerfile --build-arg PHP_VERSION_ARG=${{ matrix.php_version }} --tag dock4/php:$(date +%s)
