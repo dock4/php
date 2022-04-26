@@ -58,6 +58,6 @@ jobs:
           file: ./php/Dockerfile
           build-args: |
             PHP_VERSION_ARG=${{ matrix.php_version }}
-          push: true
+          push: ${{ (github.repository == 'dock4/php') }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
